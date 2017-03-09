@@ -1,0 +1,14 @@
+FROM ubuntu:16.04
+
+MAINTAINER Lee Keitel <lfkeitel@usi.edu>
+
+LABEL Name=tac_plus
+LABEL Version=1.0.0
+
+COPY tac_plus /tac_plus
+COPY tac_plus.sample.cfg /etc/tac_plus/tac_plus.cfg
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+
+EXPOSE 4949
+
+ENTRYPOINT ["/docker-entrypoint.sh"]

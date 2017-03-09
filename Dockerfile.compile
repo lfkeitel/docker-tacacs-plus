@@ -1,0 +1,11 @@
+FROM ubuntu:16.04
+
+ADD http://www.pro-bono-publico.de/projects/src/DEVEL.201611061407.tar.bz2 /root/tac_plus.tar.bz2
+
+RUN apt update && \
+    apt install -y --no-install-recommends gcc libc6-dev make bzip2 libdigest-md5-perl && \
+    cd /root && \
+    tar -xjf tac_plus.tar.bz2 && \
+    cd PROJECTS && \
+    ./configure --prefix=/tacacs && \
+    make && make install

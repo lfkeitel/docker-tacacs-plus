@@ -2,6 +2,12 @@
 
 This image is a built version of [tac_plus](http://www.pro-bono-publico.de/projects/), a TACACS+ implementation written by Marc Huber.
 
+## Tags
+
+`latest`, `ubuntu`, `ubuntu-201710201114` - Latest version based on Ubuntu 16.04.
+
+`alpine`, `alpine-201710201114` - Latest version based on Alpine 3.6.
+
 ## Building
 
 Docker engine 17.06+ is required to build this image because it uses a multi-stage build.

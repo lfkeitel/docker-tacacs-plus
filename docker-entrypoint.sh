@@ -22,4 +22,4 @@ mkdir -p /var/log/tac_plus
 echo "Starting server..."
 
 # Start the server
-exec ${TAC_PLUS_BIN} ${CONF_FILE}
+exec ${TAC_PLUS_BIN} -f ${CONF_FILE}

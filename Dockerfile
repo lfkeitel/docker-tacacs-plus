@@ -14,7 +14,7 @@ ADD http://www.pro-bono-publico.de/projects/src/DEVEL.$SRC_VERSION.tar.bz2 /tac_
 RUN echo "${SRC_HASH}  /tac_plus.tar.bz2" | sha256sum -c -
 
 RUN apt update && \
-    apt install -y --no-install-recommends gcc libc6-dev make bzip2 libdigest-md5-perl && \
+    apt install -y --no-install-recommends gcc libc6-dev make bzip2 libdigest-md5-perl libnet-ldap-perl && \
     tar -xjf /tac_plus.tar.bz2 && \
     cd /PROJECTS && \
     ./configure --prefix=/tacacs && \

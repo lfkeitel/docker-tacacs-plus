@@ -14,7 +14,7 @@ ADD http://www.pro-bono-publico.de/projects/src/DEVEL.$SRC_VERSION.tar.bz2 /tac_
 RUN echo "${SRC_HASH}  /tac_plus.tar.bz2" | sha256sum -c -
 
 RUN apk update && \
-    apk add build-base bzip2 perl perl-digest-md5 && \
+    apk add build-base bzip2 perl perl-digest-md5 perl-ldap && \
     tar -xjf /tac_plus.tar.bz2 && \
     cd /PROJECTS && \
     ./configure --prefix=/tacacs && \

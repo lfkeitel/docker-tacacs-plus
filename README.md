@@ -14,6 +14,10 @@ a TACACS+ implementation written by Marc Huber.
 Docker engine 17.06+ is required to build this image because it uses a multi-stage build.
 To build run: `docker build -t tac_plus .`.
 
+## Additions
+
+The Docker images include the Perl LDAP packages for Mavis authentication.
+
 ## Using
 
 To run with the default configuration:

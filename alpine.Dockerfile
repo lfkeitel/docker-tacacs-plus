@@ -1,5 +1,5 @@
 # Compile tac_plus
-FROM alpine:3.6 as build
+FROM alpine:3.7 as build
 
 MAINTAINER Lee Keitel <lfkeitel@usi.edu>
 
@@ -22,7 +22,7 @@ RUN apk update && \
     make install
 
 # Move to a clean, small image
-FROM alpine:3.6
+FROM alpine:3.7
 
 COPY --from=build /tacacs /tacacs
 COPY tac_plus.sample.cfg /etc/tac_plus/tac_plus.cfg

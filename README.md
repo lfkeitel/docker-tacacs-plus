@@ -7,12 +7,12 @@ a TACACS+ implementation written by Marc Huber.
 
 `latest`, `ubuntu`, `ubuntu-201712190728` - Latest version based on Ubuntu 16.04.
 
-`alpine`, `alpine-201712190728` - Latest version based on Alpine 3.6.
+`alpine`, `alpine-201712190728` - Latest version based on Alpine 3.7.
 
 ## Building
 
 Docker engine 17.06+ is required to build this image because it uses a multi-stage build.
-To build run: `docker build -t tac_plus .`.
+To build run: `make`. Add the argument `alpine` or `ubuntu` to build a specific image.
 
 ## Additions
 
@@ -23,7 +23,7 @@ The Docker images include the Perl LDAP packages for Mavis authentication.
 To run with the default configuration:
 
 ```
-docker run --name tac_plus -d -p 49:4949 lfkeitel/tacacs_plus:latest
+docker run --name tac_plus -d -p 4949:49 lfkeitel/tacacs_plus:latest
 ```
 
 The default configuration has a user with the username:password of admin:admin

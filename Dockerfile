@@ -28,6 +28,11 @@ COPY --from=build /tacacs /tacacs
 COPY tac_plus.sample.cfg /etc/tac_plus/tac_plus.cfg
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
+
+RUN apt update && \
+    apt install -y --no-install-recommends libdigest-md5-perl libnet-ldap-perl && \
+    rm -rf /var/cache/apt/*
+
 EXPOSE 49
 
 ENTRYPOINT ["/docker-entrypoint.sh"]

@@ -1,28 +1,28 @@
 # Compile tac_plus
-FROM alpine:3.7 as build
+FROM alpine:3.9 as build
 
 MAINTAINER Lee Keitel <lfkeitel@usi.edu>
 
 LABEL Name=tac_plus
-LABEL Version=1.0.0
+LABEL Version=1.1.0
 
 ARG SRC_VERSION
 ARG SRC_HASH
 
-ADD http://www.pro-bono-publico.de/projects/src/DEVEL.$SRC_VERSION.tar.bz2 /tac_plus.tar.bz2
+ADD https://github.com/lfkeitel/event-driven-servers/archive/$SRC_VERSION.tar.gz /tac_plus.tar.gz
 
-RUN echo "${SRC_HASH}  /tac_plus.tar.bz2" | sha256sum -c -
+RUN echo "${SRC_HASH}  /tac_plus.tar.gz" | sha256sum -c -
 
 RUN apk update && \
-    apk add build-base bzip2 perl perl-digest-md5 perl-ldap && \
-    tar -xjf /tac_plus.tar.bz2 && \
-    cd /PROJECTS && \
+    apk add build-base bzip2 perl perl-digest-md5 perl-ldap bash && \
+    tar -xzf /tac_plus.tar.gz && \
+    cd /event-driven-servers-$SRC_VERSION && \
     ./configure --prefix=/tacacs && \
-    make && \
-    make install
+    env SHELL=/bin/bash make && \
+    env SHELL=/bin/bash make install
 
 # Move to a clean, small image
-FROM alpine:3.7
+FROM alpine:3.8
 
 COPY --from=build /tacacs /tacacs
 COPY tac_plus.sample.cfg /etc/tac_plus/tac_plus.cfg

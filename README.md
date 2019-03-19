@@ -5,9 +5,9 @@ a TACACS+ implementation written by Marc Huber.
 
 ## Tags
 
-`latest`, `ubuntu`, `ubuntu-201903091339` - Latest version based on Ubuntu 16.04.
+`latest`, `ubuntu`, `ubuntu-201903091339` - Latest version based on Ubuntu 18.04.
 
-`alpine`, `alpine-201903091339` - Latest version based on Alpine 3.7.
+`alpine`, `alpine-201903091339` - Latest version based on Alpine 3.9.
 
 ## Building
 

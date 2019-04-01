@@ -1,8 +1,6 @@
 # Compile tac_plus
 FROM alpine:3.9 as build
 
-MAINTAINER Lee Keitel <lfkeitel@usi.edu>
-
 LABEL Name=tac_plus
 LABEL Version=1.1.0
 
@@ -22,7 +20,9 @@ RUN apk update && \
     env SHELL=/bin/bash make install
 
 # Move to a clean, small image
-FROM alpine:3.8
+FROM alpine:3.9
+
+LABEL maintainer="Lee Keitel <lfkeitel@usi.edu>"
 
 COPY --from=build /tacacs /tacacs
 COPY tac_plus.sample.cfg /etc/tac_plus/tac_plus.cfg

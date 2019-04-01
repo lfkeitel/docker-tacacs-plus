@@ -1,8 +1,6 @@
 # Compile tac_plus
 FROM ubuntu:18.04 as build
 
-MAINTAINER Lee Keitel <lfkeitel@usi.edu>
-
 LABEL Name=tac_plus
 LABEL Version=1.1.0
 
@@ -23,6 +21,8 @@ RUN apt update && \
 
 # Move to a clean, small image
 FROM ubuntu:18.04
+
+LABEL maintainer="Lee Keitel <lfkeitel@usi.edu>"
 
 COPY --from=build /tacacs /tacacs
 COPY tac_plus.sample.cfg /etc/tac_plus/tac_plus.cfg

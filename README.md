@@ -6,10 +6,10 @@ written by Marc Huber.
 
 ## Tags
 
-`latest`, `ubuntu`, `ubuntu-201903311519` - Latest version based on Ubuntu
+`latest`, `ubuntu`, `ubuntu-201904171831` - Latest version based on Ubuntu
 18.04.
 
-`alpine`, `alpine-201903311519` - Latest version based on Alpine 3.9.
+`alpine`, `alpine-201904171831` - Latest version based on Alpine 3.9.
 
 ## Building
 

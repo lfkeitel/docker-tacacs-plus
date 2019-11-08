@@ -1,5 +1,5 @@
 # Compile tac_plus
-FROM alpine:3.9 as build
+FROM alpine:3.10 as build
 
 LABEL Name=tac_plus
 LABEL Version=1.1.0
@@ -20,7 +20,7 @@ RUN apk update && \
     env SHELL=/bin/bash make install
 
 # Move to a clean, small image
-FROM alpine:3.9
+FROM alpine:3.10
 
 LABEL maintainer="Lee Keitel <lfkeitel@usi.edu>"
 

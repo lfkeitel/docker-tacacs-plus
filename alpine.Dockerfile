@@ -1,5 +1,5 @@
 # Compile tac_plus
-FROM alpine:3.10 as build
+FROM alpine:3.11 as build
 
 LABEL Name=tac_plus
 LABEL Version=1.1.0

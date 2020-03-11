@@ -2,7 +2,7 @@
 FROM ubuntu:18.04 as build
 
 LABEL Name=tac_plus
-LABEL Version=1.1.0
+LABEL Version=1.2.0
 
 ARG SRC_VERSION
 ARG SRC_HASH
@@ -12,7 +12,7 @@ ADD https://github.com/lfkeitel/event-driven-servers/archive/$SRC_VERSION.tar.gz
 RUN echo "${SRC_HASH}  /tac_plus.tar.gz" | sha256sum -c -
 
 RUN apt update && \
-    apt install -y --no-install-recommends gcc libc6-dev make bzip2 libdigest-md5-perl libnet-ldap-perl && \
+    apt install -y --no-install-recommends gcc libc6-dev make bzip2 libdigest-md5-perl libnet-ldap-perl libio-socket-ssl-perl && \
     tar -xzf /tac_plus.tar.gz && \
     cd /event-driven-servers-$SRC_VERSION && \
     ./configure --prefix=/tacacs && \

@@ -2,7 +2,7 @@
 FROM alpine:3.11 as build
 
 LABEL Name=tac_plus
-LABEL Version=1.1.0
+LABEL Version=1.2.0
 
 ARG SRC_VERSION
 ARG SRC_HASH
@@ -12,7 +12,7 @@ ADD https://github.com/lfkeitel/event-driven-servers/archive/$SRC_VERSION.tar.gz
 RUN echo "${SRC_HASH}  /tac_plus.tar.gz" | sha256sum -c -
 
 RUN apk update && \
-    apk add build-base bzip2 perl perl-digest-md5 perl-ldap bash && \
+    apk add build-base bzip2 perl perl-digest-md5 perl-ldap perl-io-socket-ssl bash && \
     tar -xzf /tac_plus.tar.gz && \
     cd /event-driven-servers-$SRC_VERSION && \
     ./configure --prefix=/tacacs && \

@@ -1,26 +1,21 @@
 # Compile tac_plus
-FROM ubuntu:20.04 as build
+FROM ubuntu:22.04 as build
 
 LABEL Name=tac_plus
-LABEL Version=1.3.0
+LABEL Version=1.3.1
 
-ARG SRC_VERSION
-ARG SRC_HASH
-
-ADD https://github.com/lfkeitel/event-driven-servers/archive/refs/tags/$SRC_VERSION.tar.gz /tac_plus.tar.gz
-
-RUN echo "${SRC_HASH}  /tac_plus.tar.gz" | sha256sum -c -
+ADD http://www.pro-bono-publico.de/projects/src/tac_plus.tar.bz2 /tac_plus.tar.bz2
 
 RUN apt update && \
-    apt install -y gcc libc6-dev make bzip2 libdigest-md5-perl libnet-ldap-perl libio-socket-ssl-perl && \
-    tar -xzf /tac_plus.tar.gz && \
-    cd /event-driven-servers-$SRC_VERSION && \
-    ./configure --prefix=/tacacs && \
+    apt install -y apt-utils libpcre2-dev gcc libc6-dev make bzip2 libdigest-md5-perl libnet-ldap-perl libio-socket-ssl-perl && \
+    tar -xf /tac_plus.tar.bz2 && \
+    cd /PROJECTS && \
+    ./configure --with-pcre2 --prefix=/tacacs && \
     make && \
     make install
 
 # Move to a clean, small image
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 LABEL maintainer="Lee Keitel <lfkeitel@usi.edu>"
 

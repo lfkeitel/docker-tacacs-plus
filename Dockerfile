@@ -4,12 +4,7 @@ FROM ubuntu:22.04 as build
 LABEL Name=tac_plus
 LABEL Version=1.3.1
 
-ARG SRC_VERSION
-ARG SRC_HASH
-
 ADD http://www.pro-bono-publico.de/projects/src/tac_plus.tar.bz2 /tac_plus.tar.bz2
-
-RUN echo "${SRC_HASH}  /tac_plus.tar.gz" | sha256sum -c -
 
 RUN apt update && \
     apt install -y apt-utils libpcre2-dev gcc libc6-dev make bzip2 libdigest-md5-perl libnet-ldap-perl libio-socket-ssl-perl && \

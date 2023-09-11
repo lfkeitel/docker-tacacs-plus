@@ -16,6 +16,10 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# Check which user we are running as. Useful when debugging issues while running in k8s
+echo "Running as:"
+echo | id
+
 # Make the log directories
 mkdir -p /var/log/tac_plus
 

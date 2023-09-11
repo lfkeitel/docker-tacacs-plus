@@ -14,7 +14,17 @@ written by Marc Huber.
 ## Building
 
 Docker engine 17.06+ is required to build this image because it uses a
-multi-stage build. To build run: `make`. Add the argument `alpine` or `ubuntu`
+multi-stage build.
+
+buildx is used to build multiple architextures.
+
+It might be required to boot an instance of buildx using the following command:
+
+```sh
+docker buildx create --name mybuilder --bootstrap --use
+```
+
+ To build run: `make`. Add the argument `alpine` or `ubuntu`
 to build a specific image.
 
 ## Additions
@@ -25,7 +35,7 @@ The Docker images include the Perl LDAP packages for Mavis authentication.
 
 To run with the default configuration:
 
-```
+```sh
 docker run --name tac_plus -d -p 4949:49 lfkeitel/tacacs_plus:latest
 ```
 
@@ -51,7 +61,9 @@ Configuration documentation can be found
 The LICENSE file in this repository is for the build scripts and built Docker
 image.
 
-This image includes software developed by Marc Huber (Marc.Huber@web.de).
+This image includes software developed by Marc Huber <Marc.Huber@web.de>.
+
+The original docker image was developed by Lee Keitel <lfkeitel@usi.edu>
 
 The tac_plus and supporting software is under a different license which can be
 found [here](http://www.pro-bono-publico.de/projects/unpacked/LICENSE).

@@ -1,27 +1,23 @@
-VERSION?=202104181633
-SHA256?=f2695a7cc908e03bab8ffb0a84603a0ad103b4532cc84900624899cc1c32e4ab
-DOCKER_HUB_NAME?='lfkeitel/tacacs_plus'
+VERSION?=20230911
+SHA256?=d2f2dbc7332934e87ae0c108ac9ec284616d57ebf06d49c01f4e8012bc0c195d
+DOCKER_HUB_NAME?='tanis2000/tac_plus'
 
 .PHONY: alpine ubuntu tag
 
 all: alpine ubuntu
 
 alpine:
-	docker build -t tac_plus:alpine \
+	docker buildx build --platform linux/amd64,linux/arm64 \
+		-t $(DOCKER_HUB_NAME):alpine -t $(DOCKER_HUB_NAME):alpine-$(VERSION) \
 		--build-arg SRC_VERSION=$(VERSION) \
 		--build-arg SRC_HASH=$(SHA256) \
-		-f alpine.Dockerfile .
+		-f alpine.Dockerfile \
+		--push .
 
 ubuntu:
-	docker build -t tac_plus:ubuntu \
+	docker buildx build --platform linux/amd64,linux/arm64 \
+		-t $(DOCKER_HUB_NAME):latest -t $(DOCKER_HUB_NAME):ubuntu -t $(DOCKER_HUB_NAME):ubuntu-$(VERSION) \
 		--build-arg SRC_VERSION=$(VERSION) \
 		--build-arg SRC_HASH=$(SHA256) \
-		-f Dockerfile .
-
-tag:
-	docker tag tac_plus:ubuntu $(DOCKER_HUB_NAME):latest
-	docker tag tac_plus:ubuntu $(DOCKER_HUB_NAME):ubuntu
-	docker tag tac_plus:ubuntu $(DOCKER_HUB_NAME):ubuntu-$(VERSION)
-
-	docker tag tac_plus:alpine $(DOCKER_HUB_NAME):alpine
-	docker tag tac_plus:alpine $(DOCKER_HUB_NAME):alpine-$(VERSION)
+		-f Dockerfile \
+		--push .
